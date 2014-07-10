@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+  <meta name="viewport" content="width=device-width">
+  <title>Backbone.js</title>
+
+  <link rel="stylesheet" type="text/css" href="css/app.css" />
+  
+</head>
+<body>
+  <div class="content"></div>
+  <div class="child-view"></div>
+
+  <ul id="messages"></ul>
+    <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+
+  <script src="js/vendor/jquery/dist/jquery.js"></script>
+  <script src="js/vendor/socket.io-client/socket.io.js"></script>
+
+  <script src="js/vendor/requirejs/require.js" data-main="js/main.js"></script>
+<script>
+      var socket = io();
+      $('form').submit(function(){
+        socket.emit('chat message', $('#m').val());
+        $('#m').val('');
+        return false;
+      });
+
+      $('form').on('keydown', function(){
+        socket.emit('user typing', 'user is typing');
+       
+      });
+      socket.on('user typing', function(msg){
+       console.log('user is typing')
+      });
+
+      socket.on('newUser', function(msg){
+       $('#messages').append($('<li>').text(msg));
+      });
+
+      socket.on('chat message', function(msg){
+        $('#messages').append($('<li>').text(msg));
+      });
+    </script>
+ 
+
+</body>
+</html>

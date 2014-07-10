@@ -1,0 +1,93 @@
+.bar {
+	border: 0;
+}
+.bar-tab {
+	-webkit-transition-duration: .5s;
+	       	transition-duration: .5s;
+	z-index: 12;
+}
+
+.bar-tab .tab-item, .bar-tab .menu {
+  	-webkit-transition-duration: .5s;
+          	transition-duration: .5s;
+  	-webkit-transform: translate3d(0, 0, 0);
+          	transform: translate3d(0, 0, 0);
+}
+
+.footer {
+	// Default Hidden
+	// -webkit-transform: translate3d(0, 50px, 0);
+	// 		transform: translate3d(0, 50px, 0);
+	.overlay {
+		background-color: #fff;
+		position: fixed;
+		top: 45px;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 11;
+		-webkit-transition-duration: .5s;
+		    	transition-duration: .5s;
+		-webkit-transform: translate3d(0, 100%, 0);
+		    	transform: translate3d(0, 100%, 0);
+	}
+
+	// Needs same attr as .bar-tab stuf since not in container
+	.offscreen {
+		.tab-item {
+			-webkit-transform: translate3d(320px, 0, 0);
+		      		transform: translate3d(320px, 0, 0);
+		}
+	}
+
+	// Maybe use percentage to determine spacing
+	@height: 50px;
+	@top: -400px;
+	&.open {
+	    .overlay {
+	      	-webkit-transform: translate3d(0, -9%, 0);
+	              	transform: translate3d(0, -9%, 0);
+	    }
+	    // .bar-tab .tab-item, .bar-tab .menu {
+	    //   display: inline-block;
+	    // }
+	    .bar-tab .tab-item .icon ~ .tab-label {
+	      -webkit-transform: translate3d(50px, -18px, 0);
+	              transform: translate3d(50px, -18px, 0);
+	    }
+	    .i01 {
+	      -webkit-transform: translate3d(40px, @top, 0);
+	              transform: translate3d(40px, @top, 0);
+	    }
+	    .i02 {
+	      -webkit-transform: translate3d(-20px, @top + @height, 0);
+	              transform: translate3d(-20px, @top + @height, 0);
+	    }
+	    .i03 {
+	      -webkit-transform: translate3d(-82px, @top + (@height*2), 0);
+	              transform: translate3d(-82px, @top + (@height*2), 0);
+	    }
+	    .i04 {
+	      -webkit-transform: translate3d(-142px, @top + (@height*3), 0);
+	              transform: translate3d(-142px, @top + (@height*3), 0);
+	    }
+	    .i05 {
+	      //left: 80%;
+	      .tab-label, .icon-gear {
+	        display: none;
+	      }
+	      &:before {
+	        content: 'X';
+	      }
+	    }
+	    // Only shown on overlay
+	    .i06 {
+	      -webkit-transform: translate3d(45px, -252px, 0);
+	              transform: translate3d(45px, -252px, 0);
+	    }
+	    .i07 {
+	      -webkit-transform: translate3d(-15px, -204px, 0);
+	              transform: translate3d(-15px, -204px, 0);
+	    }
+	}
+}
